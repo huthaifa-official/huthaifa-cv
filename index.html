@@ -6,14 +6,92 @@
   <title>Dr. Huthaifa Abdulqader - Resume</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; height: 100%; overflow: hidden; background-color: #525659; }
-    iframe { width: 100%; height: 100vh; border: none; }
+    html, body { width: 100%; height: 100%; background-color: #323639; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    
+    /* Navigation Bar / Language Switcher */
+    .nav-bar {
+      height: 50px;
+      background-color: #1e293b;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .nav-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .lang-toggle {
+      display: flex;
+      gap: 10px;
+    }
+    .lang-btn {
+      background: transparent;
+      border: 1px solid #3b82f6;
+      color: #ffffff;
+      padding: 5px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    .lang-btn.active, .lang-btn:hover {
+      background-color: #2563eb;
+      border-color: #2563eb;
+    }
+
+    /* PDF Container */
+    .pdf-container {
+      width: 100%;
+      height: calc(100vh - 50px);
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Make sure the PDF file in your GitHub repository is named exactly as below -->
-  <iframe src="Hutheifa AbdelQader Resume.pdf#view=FitH"></iframe>
+  <!-- Top Navigation Bar -->
+  <div class="nav-bar">
+    <div class="nav-title" id="page-title">Dr. Huthaifa Abdulqader - Resume</div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="switchLang('en')">English</button>
+      <button class="lang-btn" id="btn-ar" onclick="switchLang('ar')">العربية</button>
+    </div>
+  </div>
+
+  <!-- Embedded PDF Frame -->
+  <div class="pdf-container">
+    <iframe id="pdf-frame" src="resume-en.pdf#view=FitH"></iframe>
+  </div>
+
+  <script>
+    function switchLang(lang) {
+      const iframe = document.getElementById('pdf-frame');
+      const btnEn = document.getElementById('btn-en');
+      const btnAr = document.getElementById('btn-ar');
+      const pageTitle = document.getElementById('page-title');
+
+      if (lang === 'ar') {
+        iframe.src = 'resume-ar.pdf#view=FitH';
+        btnAr.classList.add('active');
+        btnEn.classList.remove('active');
+        pageTitle.textContent = 'د. حذيفة عبد القادر - السيرة الذاتية';
+      } else {
+        iframe.src = 'resume-en.pdf#view=FitH';
+        btnEn.classList.add('active');
+        btnAr.classList.remove('active');
+        pageTitle.textContent = 'Dr. Huthaifa Abdulqader - Resume';
+      }
+    }
+  </script>
 
 </body>
 </html>
